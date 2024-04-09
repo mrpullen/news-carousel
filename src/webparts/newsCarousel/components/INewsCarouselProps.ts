@@ -4,11 +4,12 @@ export interface INewsCarouselProps {
   height: number;
   css: string;
   headerText: string;
+  headerTextLink: string;
   webPartId: string;
   moreInformation: string;
   moreInformationLink: string;
   breakpoints: Array<{selector:number, slidesPerView: string, spaceBetween: string}>;
   slidesPerView: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  breakpointsJson: any;
+  delay: number;
+
 }

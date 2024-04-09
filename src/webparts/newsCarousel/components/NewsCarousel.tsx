@@ -2,7 +2,7 @@
 import * as React from 'react';
 import styles from './NewsCarousel.module.scss';
 import type { INewsCarouselProps } from './INewsCarouselProps';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/swiper-react';
 
 import 'swiper/swiper-bundle.css';
@@ -115,6 +115,7 @@ export default class NewsCarousel extends React.Component<INewsCarouselProps, IN
     moreInformation,
     moreInformationLink,
     slidesPerView,
+    delay
   } = this.props;
   const {
     slides,
@@ -149,13 +150,16 @@ export default class NewsCarousel extends React.Component<INewsCarouselProps, IN
               slidesPerView={slidesPerView}
               spaceBetween={10}
               freeMode
+              autoplay={delay > 0 ? {
+                delay: delay
+              } : undefined}
               loop
               pagination={{
                 clickable: true,
               }}
               breakpoints={breakpoints}
               breakpointsBase='container'
-              modules={[Pagination, Navigation]}
+              modules={[Pagination, Navigation, Autoplay]}
               navigation
               className={styles.swiper}
             >

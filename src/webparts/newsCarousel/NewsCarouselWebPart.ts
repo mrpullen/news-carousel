@@ -15,7 +15,7 @@ import { INewsCarouselProps } from './components/INewsCarouselProps';
 import { PropertyFieldCodeEditor, PropertyFieldCodeEditorLanguages } from '@pnp/spfx-property-controls/lib/PropertyFieldCodeEditor';
 
 import { PropertyFieldCollectionData, CustomCollectionFieldType } from '@pnp/spfx-property-controls/lib/PropertyFieldCollectionData';
-import { PropertyFieldNumber } from '@pnp/spfx-property-controls';
+import { PropertyFieldNumber, PropertyFieldSliderWithCallout } from '@pnp/spfx-property-controls';
 
 export interface INewsCarouselWebPartProps {
   slideBody: string;
@@ -23,12 +23,14 @@ export interface INewsCarouselWebPartProps {
   height: number;
   css: string;
   headerText: string;
+  headerLink: string;
   webPartId: string;
   breakpoints: Array<{selector:number, slidesPerView: string, spaceBetween: string}>;
   moreInformation: string;
   moreInformationLink: string;
   slidesPerView: number;
   breakpointsJson: any;
+  timeBetweenSlides: number;
 }
 
 export default class NewsCarouselWebPart extends BaseClientSideWebPart<INewsCarouselWebPartProps> {
@@ -56,6 +58,7 @@ export default class NewsCarouselWebPart extends BaseClientSideWebPart<INewsCaro
       {
         webPartId: this.context.instanceId.trim(),
         headerText: this.properties.headerText ? this.properties.headerText : "Header",
+        headerTextLink: this.properties.headerLink ? this.properties.headerLink : "",
         template: this.properties.slideBody ? this.properties.slideBody : "<div>{{Title}}</div>",
         data: this.properties.slideData,
         height: this.properties.height ? this.properties.height : 150,
@@ -64,7 +67,7 @@ export default class NewsCarouselWebPart extends BaseClientSideWebPart<INewsCaro
         moreInformation: this.properties.moreInformation,
         moreInformationLink: this.properties.moreInformationLink,
         slidesPerView: this.properties.slidesPerView,
-        breakpointsJson: this.properties.breakpointsJson
+        delay: this.properties.timeBetweenSlides ? this.properties.timeBetweenSlides : 0
       }
     );
 
@@ -96,6 +99,9 @@ export default class NewsCarouselWebPart extends BaseClientSideWebPart<INewsCaro
               groupFields: [
                 PropertyPaneTextField("headerText", {
                   label: "Header Text"
+                }),
+                PropertyPaneTextField("headerTextLink", {
+                  label: "Header Text Link"
                 }),
                 PropertyFieldNumber("slidesPerView", {
                   key: 'slidesPerViewId',
@@ -199,9 +205,14 @@ export default class NewsCarouselWebPart extends BaseClientSideWebPart<INewsCaro
                   label: "Swiper Height",
                   description: "Sets the height of the swiper control",
                   value: this.properties.height ? this.properties.height : 150,
-                  minValue: 100,
+                  minValue: 50,
                   
                   disabled: false
+                }),
+                PropertyFieldSliderWithCallout("timeBetweenSlides", {
+                  key: 'timeBetweenSlidesId',
+                  min: 0,
+                  max: 30000
                 }),
                 PropertyFieldCollectionData("breakpoints", {
                   key: "breakpointsCollectionData",
@@ -232,29 +243,6 @@ export default class NewsCarouselWebPart extends BaseClientSideWebPart<INewsCaro
                     }
                   ],
                   disabled: false
-                }),
-                PropertyFieldCodeEditor('breakpointsJson', {
-                  label: 'Edit Breakpoints Code',
-                  panelTitle: 'Edit BreakPoints Code',
-                  initialValue: this.properties.breakpointsJson ? this.properties.breakpointsJson : `
-                    320:  { slidesPerView: 1, spaceBetween: 05 },
-                    480:  { slidesPerView: 2, spaceBetween: 10 },
-                    786:  { slidesPerView: 3, spaceBetween: 15 },
-                    1024: { slidesPerView: 4, spaceBetween: 20 },
-                    1366: { slidesPerView: 5, spaceBetween: 25 },
-                    1920: { slidesPerView: 6, spaceBetween: 30 }
-                  `,
-                  onPropertyChange: this.onCodeChanged.bind(this),
-                  properties: this.properties,
-                  disabled: false,
-                  key: 'codeEditorFieldBreakPointsId',
-                  language: PropertyFieldCodeEditorLanguages.JSON,
-                  options: {
-                    wrap: true,
-                    fontSize: 20,
-                    tabSize: 4,
-                    // more options
-                  }
                 }),
               ]
             }
