@@ -110,6 +110,7 @@ export default class NewsCarousel extends React.Component<INewsCarouselProps, IN
   public render(): React.ReactElement < INewsCarouselProps > {
   const {
     headerText,
+    headerTextLink,
     height,
     webPartId,
     moreInformation,
@@ -143,7 +144,8 @@ export default class NewsCarousel extends React.Component<INewsCarouselProps, IN
   { slides && slides.length > 0 && < div id = {`carousel-${webPartId.trim()}`}>
 
           <div className={`${styles.headerStyle} header`}>
-            <h2 className={`headerText`}>{headerText}</h2>
+            { headerTextLink && headerText && <a href={headerTextLink}><h2 className={`headerText`}>{headerText}</h2></a>}
+            { "" === headerTextLink && headerText && <h2 className={`headerText`}>{headerText}</h2>}
           </div>
           <div className={`${styles.newsCarousel} carousel`} style={{ minHeight: height }}>
             <Swiper
@@ -151,7 +153,8 @@ export default class NewsCarousel extends React.Component<INewsCarouselProps, IN
               spaceBetween={10}
               freeMode
               autoplay={delay > 0 ? {
-                delay: delay
+                delay: delay,
+                pauseOnMouseEnter: true
               } : undefined}
               loop
               pagination={{
