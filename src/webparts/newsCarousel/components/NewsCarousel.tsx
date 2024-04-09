@@ -165,9 +165,11 @@ export default class NewsCarousel extends React.Component<INewsCarouselProps, IN
 
             </Swiper>
           </div>
-          <div className={`${styles.newsCarouselFooter} carousel-footer`}>
-            <Link className={`${styles.newsCarouselFooterLink} carousel-footer-link`} link={moreInformationLink}>{moreInformation}</Link>
-          </div>
+          {moreInformationLink && moreInformation && 
+            <div className={`${styles.newsCarouselFooter} carousel-footer`}>
+              <Link className={`${styles.newsCarouselFooterLink} carousel-footer-link`} href={moreInformationLink} link={moreInformationLink}>{moreInformation}</Link>
+            </div>
+          }
         </div >}
 
       </React.Fragment >

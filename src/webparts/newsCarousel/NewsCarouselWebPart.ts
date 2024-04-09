@@ -4,8 +4,7 @@ import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
   PropertyPaneTextField,
-  type IPropertyPaneConfiguration,
-  PropertyPaneLink
+  type IPropertyPaneConfiguration
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
@@ -97,16 +96,19 @@ export default class NewsCarouselWebPart extends BaseClientSideWebPart<INewsCaro
                 PropertyPaneTextField("headerText", {
                   label: "Header Text"
                 }),
+                PropertyPaneTextField("moreInformation", {
+                  label: " Show More Information Text"
+                }),
+                PropertyPaneTextField("moreInformationLink", {
+                  label: " Show More Information Link"
+                }),
+                
                 PropertyFieldNumber("slidesPerView", {
                   key: 'slidesPerViewId',
                   label: "Slides per View",
                   minValue: 1,
                   maxValue: 10,
                   value: this.properties.slidesPerView
-                }),
-                PropertyPaneLink("moreInformation", {
-                  text: this.properties.moreInformation,
-                  href: this.properties.moreInformationLink
                 }),
                 PropertyFieldCollectionData("slideData", {
                   key: "collectionData",
