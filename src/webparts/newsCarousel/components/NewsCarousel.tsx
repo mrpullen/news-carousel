@@ -97,12 +97,18 @@ export default class NewsCarousel extends React.Component<INewsCarouselProps, IN
   const mappedTags = tags.map((tag) => {
     if (tag) {
       console.log(tag.trim());
+      if(tag.trim().startsWith(".carousel-container")) {
+        return `#carousel-${instanceId.trim()}${tag.trim()} \n }`; 
+      }
+      else {
       return `#carousel-${instanceId.trim()} ${tag.trim()} \n }`;
+      }
     }
     else {
       return "";
     }
   });
+
   return mappedTags.join('\n');
 }
 
@@ -141,7 +147,7 @@ export default class NewsCarousel extends React.Component<INewsCarouselProps, IN
     { css && <style type="text/css">{css}</style>
 }
 
-  { slides && slides.length > 0 && < div id = {`carousel-${webPartId.trim()}`} className={`carousel-container-${webPartId.trim()}`}>
+  { slides && slides.length > 0 && < div id = {`carousel-${webPartId.trim()}`} className={`carousel-container`}>
 
           <div className={`${styles.headerStyle} header`}>
             { headerTextLink && headerText && <a href={headerTextLink}><h2 className={`headerText`}>{headerText}</h2></a>}
