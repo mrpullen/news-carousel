@@ -22,7 +22,7 @@ export interface INewsCarouselWebPartProps {
   height: number;
   css: string;
   headerText: string;
-  headerLink: string;
+  headerTextLink: string;
   webPartId: string;
   breakpoints: Array<{selector:number, slidesPerView: string, spaceBetween: string}>;
   moreInformation: string;
@@ -57,7 +57,7 @@ export default class NewsCarouselWebPart extends BaseClientSideWebPart<INewsCaro
       {
         webPartId: this.context.instanceId.trim(),
         headerText: this.properties.headerText ? this.properties.headerText : "Header",
-        headerTextLink: this.properties.headerLink ? this.properties.headerLink : "",
+        headerTextLink: this.properties.headerTextLink ? this.properties.headerTextLink : "",
         template: this.properties.slideBody ? this.properties.slideBody : "<div>{{Title}}</div>",
         data: this.properties.slideData,
         height: this.properties.height ? this.properties.height : 150,
