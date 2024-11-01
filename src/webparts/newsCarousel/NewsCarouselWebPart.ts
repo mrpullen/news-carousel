@@ -130,6 +130,13 @@ export default class NewsCarouselWebPart extends BaseClientSideWebPart<INewsCaro
                       required: true
                     },
                     {
+                      id: "TitleColor",
+                      title: "Title Color",
+                      type: CustomCollectionFieldType.color,
+                      defaultValue: "#000000",
+                      required: true
+                    },
+                    {
                       id: "Description",
                       title: "Description",
                       type: CustomCollectionFieldType.string,
@@ -152,7 +159,20 @@ export default class NewsCarouselWebPart extends BaseClientSideWebPart<INewsCaro
                       title: "ShowImage",
                       type: CustomCollectionFieldType.boolean,
                       defaultValue: true
-                    }
+                    },
+                    {
+                      id: "SecondLink",
+                      title: "Second Link",
+                      type: CustomCollectionFieldType.string,
+                      required: false
+                    },
+                    {
+                      id: "SecondLinkText",
+                      title: "Second Link Text",
+                      type: CustomCollectionFieldType.string,
+                      required: false
+                    },
+                    
                   ],
                   disabled: false
                 }),

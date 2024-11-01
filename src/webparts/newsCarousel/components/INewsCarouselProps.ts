@@ -1,6 +1,8 @@
+import { INewsSlideData } from "./INewsSlideData";
+
 export interface INewsCarouselProps {
   template: string;
-  data: Array<{Title:string, Description: string, ImageUrl: string, Link: string; showImage: boolean}>;
+  data: Array<INewsSlideData>;
   height: number;
   css: string;
   headerText: string;
