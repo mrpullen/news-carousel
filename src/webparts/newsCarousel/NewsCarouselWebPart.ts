@@ -149,22 +149,22 @@ export default class NewsCarouselWebPart extends BaseClientSideWebPart<INewsCaro
                       required: false
                     },
                     {
+                      id: "AltText",
+                      title: "Image Alt Text",
+                      type: CustomCollectionFieldType.string,
+                      required: false
+                    },
+                    {
                       id: "LinkText",
                       title: "Link Text",
                       type: CustomCollectionFieldType.string,
-                      required: true
+                      required: false
                     },
                     {
                       id: "Link",
                       title: "Link",
                       type: CustomCollectionFieldType.string,
                       required: true,
-                    },
-                    {
-                      id: "LinkAltText",
-                      title: "Link Alt Lext",
-                      type: CustomCollectionFieldType.string,
-                      required: true
                     },
                     {
                       id: "ShowImage",
