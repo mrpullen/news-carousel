@@ -149,8 +149,20 @@ export default class NewsCarouselWebPart extends BaseClientSideWebPart<INewsCaro
                       required: false
                     },
                     {
+                      id: "LinkText",
+                      title: "Link Text",
+                      type: CustomCollectionFieldType.string,
+                      required: true
+                    },
+                    {
                       id: "Link",
                       title: "Link",
+                      type: CustomCollectionFieldType.string,
+                      required: true,
+                    },
+                    {
+                      id: "LinkAltText",
+                      title: "Link Alt Lext",
                       type: CustomCollectionFieldType.string,
                       required: true
                     },
@@ -172,6 +184,12 @@ export default class NewsCarouselWebPart extends BaseClientSideWebPart<INewsCaro
                       type: CustomCollectionFieldType.string,
                       required: false
                     },
+                    {
+                      id: "SecondLinkAltText",
+                      title: "Second Link Alt Text",
+                      type: CustomCollectionFieldType.string,
+                      required: false
+                    }
                     
                   ],
                   disabled: false
